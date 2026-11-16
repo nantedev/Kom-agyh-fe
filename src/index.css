@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+
+:root {
+  --background: #f7f9ff;
+  --foreground: #141c25;
+  --card: #ffffff;
+  --card-foreground: #141c25;
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #0051ae;
+  --primary-end: #0969da;
+  --primary-foreground: #ffffff;
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: #ca3725;
+  --border: #dae3ef;
+  --input: #dae3ef;
+  --ring: #0051ae;
+  --radius: 0.5rem;
+
+  --blue-text: #055bbf;
+  --title-accent: #0763cf;
+  --grey-blue: #475569;
+  --label: #424753;
+  --placeholder: rgba(114, 119, 133, 0.5);
+  --brand: #0f172a;
+  --card-border: rgba(194, 198, 214, 0.15);
+  --success: #e0faeb;
+  --success-foreground: #066a31;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-end: var(--primary-end);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-blue-text: var(--blue-text);
+  --color-title-accent: var(--title-accent);
+  --color-grey-blue: var(--grey-blue);
+  --color-label: var(--label);
+  --color-placeholder: var(--placeholder);
+  --color-brand: var(--brand);
+  --color-card-border: var(--card-border);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --radius-sm: 4px;
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}

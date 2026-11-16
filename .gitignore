@@ -1,0 +1,11 @@
+.agents/
+AGENTS.md
+testing/
+eslint.config.js
+docs/
+node_modules/
+dist/
+.env
+communication/
+plan/
+maquettes/
