@@ -12,14 +12,14 @@ type SignUpPageProps = ComponentProps<typeof SignUpForm>
 export default function SignUpPage(formProps: SignUpPageProps) {
   return (
     <PageLayout
-      headerActions={
+      navBarActions={
         <Button
           variant="outline"
-          size="header"
+          size="navBar"
           nativeButton={false}
           render={<Link to="/signin" />}
         >
-          {signUpContent.headerAction}
+          {signUpContent.navBarAction}
         </Button>
       }
     >

@@ -14,19 +14,19 @@ type HomePageProps = {
 export default function HomePage({ userName, onSignOut }: HomePageProps) {
   const { actions } = homeContent
 
-  const headerActions =
+  const navBarActions =
     userName === undefined ? (
       <>
         <Button
           variant="outline"
-          size="header"
+          size="navBar"
           nativeButton={false}
           render={<Link to="/signin" />}
         >
           {actions.signIn}
         </Button>
         <Button
-          size="header"
+          size="navBar"
           nativeButton={false}
           render={<Link to="/signup" />}
         >
@@ -34,14 +34,14 @@ export default function HomePage({ userName, onSignOut }: HomePageProps) {
         </Button>
       </>
     ) : (
-      <Button variant="ghost" size="header" onClick={onSignOut}>
+      <Button variant="ghost" size="navBar" onClick={onSignOut}>
         <LogOutIcon aria-hidden />
         {actions.signOut}
       </Button>
     )
 
   return (
-    <PageLayout headerActions={headerActions}>
+    <PageLayout navBarActions={navBarActions}>
       <HomeHeading userName={userName} />
     </PageLayout>
   )

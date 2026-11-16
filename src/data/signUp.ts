@@ -10,5 +10,5 @@ export const signUpContent = {
   pendingLabel: 'Création du compte en cours',
   footerText: 'Tu as déjà un compte ? ',
   footerLink: 'Connecte-toi.',
-  headerAction: 'Se connecter',
+  navBarAction: 'Se connecter',
 }

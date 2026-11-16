@@ -8,5 +8,5 @@ export const signInContent = {
   pendingLabel: 'Connexion en cours',
   footerText: 'Pas de compte ? ',
   footerLink: 'Créer un compte maintenant.',
-  headerAction: 'Créer un compte',
+  navBarAction: 'Créer un compte',
 }

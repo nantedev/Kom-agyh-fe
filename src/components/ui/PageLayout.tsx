@@ -4,17 +4,17 @@ import Footer from '@/components/ui/Footer'
 import NavBar from '@/components/ui/NavBar'
 
 type PageLayoutProps = {
-  headerActions?: ReactNode
+  navBarActions?: ReactNode
   children: ReactNode
 }
 
 export default function PageLayout({
-  headerActions,
+  navBarActions,
   children,
 }: PageLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <NavBar>{headerActions}</NavBar>
+      <NavBar>{navBarActions}</NavBar>
       <main className="flex flex-1 flex-col items-center">{children}</main>
       <Footer />
     </div>

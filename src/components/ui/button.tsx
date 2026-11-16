@@ -17,13 +17,13 @@ const buttonVariants = cva(
       },
       size: {
         default: 'px-4 py-3 text-base leading-6 font-semibold',
-        header: 'px-4 py-3 text-base leading-6 font-semibold',
+        navBar: 'px-4 py-3 text-base leading-6 font-semibold',
         large:
           'h-[43px] w-full text-sm leading-5 font-bold tracking-[-0.35px] drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)]',
       },
     },
     compoundVariants: [
-      { variant: 'ghost', size: 'header', className: 'pr-3 pl-4' },
+      { variant: 'ghost', size: 'navBar', className: 'pr-3 pl-4' },
     ],
     defaultVariants: {
       variant: 'default',

@@ -12,9 +12,9 @@ type SignInPageProps = ComponentProps<typeof SignInForm>
 export default function SignInPage(formProps: SignInPageProps) {
   return (
     <PageLayout
-      headerActions={
-        <Button size="header" nativeButton={false} render={<Link to="/signup" />}>
-          {signInContent.headerAction}
+      navBarActions={
+        <Button size="navBar" nativeButton={false} render={<Link to="/signup" />}>
+          {signInContent.navBarAction}
         </Button>
       }
     >
