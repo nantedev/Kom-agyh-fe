@@ -1,8 +1,12 @@
 export type AuthOrigin = 'signup' | 'signin'
 
 export function composeArrivalToast(
-  _origin: AuthOrigin,
-  _firstName: string,
+  origin: AuthOrigin,
+  firstName: string,
 ): string {
-  return ''
+  if (origin === 'signup') {
+    return `Bienvenue ${firstName}, ton compte est créé.`
+  }
+
+  return `Content de te revoir, ${firstName}`
 }

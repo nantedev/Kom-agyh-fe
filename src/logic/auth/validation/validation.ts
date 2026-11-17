@@ -9,10 +9,14 @@ export type SignUpFields = {
   password: string
 }
 
-export function isSignInSubmitDisabled(_fields: SignInFields): boolean {
-  return undefined as unknown as boolean
+export function isSignInSubmitDisabled(fields: SignInFields): boolean {
+  return fields.email === '' || fields.password === ''
 }
 
-export function isSignUpSubmitDisabled(_fields: SignUpFields): boolean {
-  return undefined as unknown as boolean
+export function isSignUpSubmitDisabled(fields: SignUpFields): boolean {
+  return (
+    fields.firstName.trim() === '' ||
+    fields.email === '' ||
+    fields.password === ''
+  )
 }
