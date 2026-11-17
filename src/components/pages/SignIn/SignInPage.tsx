@@ -1,20 +1,33 @@
-import { Link } from 'react-router'
-import type { ComponentProps } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Link, useNavigate } from 'react-router'
 
+import SignInForm from '@/components/pages/SignIn/SignInForm'
 import AuthCard from '@/components/ui/AuthCard'
 import { Button } from '@/components/ui/button'
 import PageLayout from '@/components/ui/PageLayout'
-import SignInForm from '@/components/pages/SignIn/SignInForm'
 import { signInContent } from '@/data/signIn'
+import { signIn } from '@/lib/api/auth'
+import { queryKeys } from '@/lib/api/queryKeys'
+import type { AuthOrigin } from '@/logic/auth/toast/toast'
+import type { SignInFields } from '@/logic/auth/validation/validation'
 
-type SignInPageProps = ComponentProps<typeof SignInForm>
+export default function SignInPage() {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
-export default function SignInPage(formProps: SignInPageProps) {
+  const signInMutation = useMutation({
+    mutationFn: (fields: SignInFields) => signIn(fields),
+    onSuccess: (session) => {
+      queryClient.setQueryData(queryKeys.session, session)
+      navigate('/', { state: { arrival: 'signin' satisfies AuthOrigin } })
+    },
+  })
+
   return (
     <PageLayout
-      headerActions={
-        <Button size="header" nativeButton={false} render={<Link to="/signup" />}>
-          {signInContent.headerAction}
+      navBarActions={
+        <Button size="navBar" nativeButton={false} render={<Link to="/signup" />}>
+          {signInContent.navBarAction}
         </Button>
       }
     >
@@ -30,7 +43,10 @@ export default function SignInPage(formProps: SignInPageProps) {
             </>
           }
         >
-          <SignInForm {...formProps} />
+          <SignInForm
+            isPending={signInMutation.isPending}
+            onSubmit={signInMutation.mutateAsync}
+          />
         </AuthCard>
       </div>
     </PageLayout>

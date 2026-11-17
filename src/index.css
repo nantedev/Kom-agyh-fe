@@ -21,6 +21,7 @@
   --destructive: #ca3725;
   --border: #dae3ef;
   --input: #dae3ef;
+  --input-focus: #154c9a;
   --ring: #0051ae;
   --radius: 0.5rem;
 
@@ -55,6 +56,7 @@
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-input-focus: var(--input-focus);
   --color-ring: var(--ring);
   --color-blue-text: var(--blue-text);
   --color-title-accent: var(--title-accent);

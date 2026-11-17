@@ -9,3 +9,5 @@ dist/
 communication/
 plan/
 maquettes/
+test-results/
+playwright-report/

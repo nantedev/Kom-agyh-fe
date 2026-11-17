@@ -1,25 +1,43 @@
-import { Link } from 'react-router'
-import type { ComponentProps } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { Link, useNavigate } from 'react-router'
 
+import SignUpForm from '@/components/pages/SignUp/SignUpForm'
 import AuthCard from '@/components/ui/AuthCard'
 import { Button } from '@/components/ui/button'
 import PageLayout from '@/components/ui/PageLayout'
-import SignUpForm from '@/components/pages/SignUp/SignUpForm'
 import { signUpContent } from '@/data/signUp'
+import { signUp } from '@/lib/api/auth'
+import { queryKeys } from '@/lib/api/queryKeys'
+import type { AuthOrigin } from '@/logic/auth/toast/toast'
+import type { SignUpFields } from '@/logic/auth/validation/validation'
 
-type SignUpPageProps = ComponentProps<typeof SignUpForm>
+export default function SignUpPage() {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
-export default function SignUpPage(formProps: SignUpPageProps) {
+  const signUpMutation = useMutation({
+    mutationFn: (fields: SignUpFields) =>
+      signUp({
+        name: fields.firstName.trim(),
+        email: fields.email,
+        password: fields.password,
+      }),
+    onSuccess: (session) => {
+      queryClient.setQueryData(queryKeys.session, session)
+      navigate('/', { state: { arrival: 'signup' satisfies AuthOrigin } })
+    },
+  })
+
   return (
     <PageLayout
-      headerActions={
+      navBarActions={
         <Button
           variant="outline"
-          size="header"
+          size="navBar"
           nativeButton={false}
           render={<Link to="/signin" />}
         >
-          {signUpContent.headerAction}
+          {signUpContent.navBarAction}
         </Button>
       }
     >
@@ -35,7 +53,10 @@ export default function SignUpPage(formProps: SignUpPageProps) {
             </>
           }
         >
-          <SignUpForm {...formProps} />
+          <SignUpForm
+            isPending={signUpMutation.isPending}
+            onSubmit={signUpMutation.mutateAsync}
+          />
         </AuthCard>
       </div>
     </PageLayout>
