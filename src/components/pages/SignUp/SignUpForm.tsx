@@ -60,7 +60,6 @@ export default function SignUpForm({
       return
     }
 
-    clearErrors('root')
     submittingRef.current = true
 
     try {
@@ -84,7 +83,10 @@ export default function SignUpForm({
   return (
     <form
       noValidate
-      onSubmit={handleSubmit(handleValidSubmit)}
+      onSubmit={(event) => {
+        clearErrors('root')
+        return handleSubmit(handleValidSubmit)(event)
+      }}
       className="flex w-full flex-col items-center gap-8"
     >
       <AuthField

@@ -1,5 +1,13 @@
 import { homeContent } from '@/data/home'
 
-export function composeGreeting(firstName: string): string {
-  return `${homeContent.connected.titlePrefix}${firstName} ?`
+export type GreetingParts = {
+  prefix: string
+  accent: string
+}
+
+export function composeGreeting(firstName: string): GreetingParts {
+  return {
+    prefix: homeContent.connected.titlePrefix,
+    accent: `${firstName} ?`,
+  }
 }
