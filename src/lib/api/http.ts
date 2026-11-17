@@ -45,23 +45,24 @@ export async function request<T>(
   })
 
   const text = await response.text()
-  let body: unknown = null
-
-  if (text) {
-    try {
-      body = JSON.parse(text)
-    } catch {
-      body = null
-    }
-  }
 
   if (!response.ok) {
-    if (isApiError(body)) {
-      throw new ApiRequestError(body)
+    let errorBody: unknown = null
+
+    if (text) {
+      try {
+        errorBody = JSON.parse(text)
+      } catch {
+        errorBody = null
+      }
+    }
+
+    if (isApiError(errorBody)) {
+      throw new ApiRequestError(errorBody)
     }
 
     throw new Error(`HTTP ${response.status}`)
   }
 
-  return body as T
+  return (text ? JSON.parse(text) : null) as T
 }
