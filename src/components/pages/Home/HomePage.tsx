@@ -7,8 +7,10 @@ import { toast } from 'sonner'
 import HomeHeading from '@/components/pages/Home/HomeHeading'
 import { Button } from '@/components/ui/button'
 import PageLayout from '@/components/ui/PageLayout'
+import { networkErrorMessage } from '@/data/auth'
 import { homeContent } from '@/data/home'
 import { getSession, signOut } from '@/lib/api/auth'
+import { extractApiError } from '@/lib/api/http'
 import { queryKeys } from '@/lib/api/queryKeys'
 import { composeArrivalToast, type AuthOrigin } from '@/logic/auth/toast/toast'
 
@@ -31,6 +33,10 @@ export default function HomePage() {
     mutationFn: signOut,
     onSuccess: () => {
       queryClient.setQueryData(queryKeys.session, null)
+    },
+    onError: (error) => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.session })
+      toast.error(extractApiError(error)?.message ?? networkErrorMessage)
     },
   })
 
